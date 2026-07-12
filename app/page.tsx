@@ -1,65 +1,68 @@
-import Image from "next/image";
+"use client";
+
+import dynamic from "next/dynamic";
+import { useState } from "react";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import VideoHero from "@/components/VideoHero";
+import InvitationHeader from "@/components/sections/InvitationHeader";
+import OurStory from "@/components/sections/OurStory";
+import PhotoGallery from "@/components/sections/PhotoGallery";
+import RSVPForm from "@/components/sections/RSVPForm";
+import SaveTheDate from "@/components/sections/SaveTheDate";
+import Schedule from "@/components/sections/Schedule";
+import Venue from "@/components/sections/Venue";
+
+const EnvelopeOverlay = dynamic(
+  () => import("@/components/EnvelopeOverlay"),
+  { ssr: false }
+);
 
 export default function Home() {
+  const [envelopeOpen, setEnvelopeOpen] = useState(false);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <main className="relative w-full">
+        <div className="lg:flex lg:min-h-screen">
+          <div className="relative h-dvh w-full lg:sticky lg:top-0 lg:h-screen lg:w-1/2 lg:shrink-0">
+            <VideoHero shouldPlay={envelopeOpen} />
+          </div>
+
+          <div className="flex justify-center border-b border-stone-200 bg-gradient-to-b from-stone-200/80 to-cream py-5 lg:hidden">
+            <ScrollIndicator targetId="invitation-start" />
+          </div>
+
+          <div className="lg:flex lg:w-1/2 lg:flex-col lg:overflow-y-auto lg:h-screen">
+            <div className="hidden lg:flex justify-center border-b border-stone-200 bg-stone-100 py-4">
+              <ScrollIndicator targetId="our-story" />
+            </div>
+            <InvitationHeader className="lg:flex lg:flex-1 lg:flex-col lg:justify-center" />
+          </div>
+        </div>
+
+        <div id="our-story">
+          <OurStory />
+        </div>
+        <PhotoGallery />
+        <Schedule />
+        <Venue />
+        <SaveTheDate />
+        <RSVPForm />
+
+        <footer className="border-t border-stone-200 px-6 py-10 text-center">
+          <p className="font-serif text-sm italic text-stone-600">
+            Cordially Inviting You,
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <p className="mt-3 text-sm text-stone-700">
+            K. Ravi – R. Kalamathi
+          </p>
+          <p className="text-sm text-stone-700">
+            S. Rajasegar – R. Amuthalini
+          </p>
+        </footer>
       </main>
-    </div>
+
+      <EnvelopeOverlay onOpen={() => setEnvelopeOpen(true)} />
+    </>
   );
 }

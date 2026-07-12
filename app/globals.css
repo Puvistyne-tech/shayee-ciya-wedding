@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f5;
+  --foreground: #1a1a1a;
+  --cream: #f5f0e8;
+  --gold: #8b7355;
+  --envelope: #e8e0d4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-envelope: var(--envelope);
+  --font-sans: var(--font-cormorant);
+  --font-serif: var(--font-playfair);
+  --font-script: var(--font-great-vibes);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+@keyframes bounce-gentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+@keyframes bounce-up {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-up {
+  animation: bounce-up 2s ease-in-out infinite;
+}
+
+@keyframes envelope-pulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 0 rgba(245, 215, 142, 0);
+  }
+  50% {
+    box-shadow: inset 0 0 0 3px rgba(245, 215, 142, 0.35);
+  }
+}
+
+.envelope-hint-pulse-top {
+  animation: envelope-pulse 2.5s ease-in-out infinite;
+}
+
+.envelope-hint-pulse-bottom {
+  animation: envelope-pulse 2.5s ease-in-out infinite 0.4s;
+}
+
+@keyframes countdown-pop {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes countdown-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px rgba(212, 175, 55, 0.2);
+  }
+}
+
+@keyframes countdown-celebrate {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.countdown-number {
+  animation: countdown-pop 0.5s ease-out;
+}
+
+.countdown-glow {
+  animation: countdown-glow 3s ease-in-out infinite;
+}
+
+.countdown-celebrate {
+  animation: countdown-celebrate 2s ease-in-out infinite;
+}
+
+.countdown-unit {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.countdown-unit:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 175, 55, 0.5);
 }
