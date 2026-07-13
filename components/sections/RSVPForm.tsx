@@ -1,9 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { formatRsvpDeadline } from "@/lib/dates";
-import type { Locale } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import enMessages from "@/messages/en.json";
 
 type Attendance = "accepts" | "declines" | "";
@@ -13,7 +11,6 @@ const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 export default function RSVPForm() {
   const t = useTranslations("rsvp");
   const email = enMessages.rsvp;
-  const locale = useLocale() as Locale;
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState<Attendance>("");
   const [dietary, setDietary] = useState("");
@@ -61,7 +58,7 @@ export default function RSVPForm() {
           message: [
             `Name: ${name.trim()}`,
             `Attendance: ${attendanceLabel}`,
-            `Dietary restrictions: ${dietary.trim() || email.emailNone}`,
+            `${email.emailMessageLabel}: ${dietary.trim() || email.emailNone}`,
           ].join("\n"),
           botcheck: "",
         }),
@@ -103,9 +100,6 @@ export default function RSVPForm() {
         {t("heading")}
       </h2>
       <div className="mx-auto mt-2 h-px w-16 bg-stone-300" />
-      <p className="mt-4 text-center text-sm text-stone-600">
-        {t("deadline", { date: formatRsvpDeadline(locale) })}
-      </p>
 
       <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-sm space-y-6">
         <div>

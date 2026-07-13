@@ -10,6 +10,7 @@ import {
 
 export default function Venue() {
   const t = useTranslations("venue");
+  const dressCode = t("dressCode");
 
   return (
     <section className="px-6 py-14">
@@ -33,9 +34,11 @@ export default function Venue() {
           {VENUE_ADDRESS_LINE2}
         </p>
 
-        <p className="mt-6 text-sm text-stone-500 italic">
-          {t("dressCode")}
-        </p>
+        {dressCode && (
+          <p className="mt-6 text-sm text-stone-500 italic">
+            {dressCode}
+          </p>
+        )}
 
         <a
           href={GOOGLE_MAPS_URL}

@@ -27,8 +27,10 @@
     "brideParents": "Mr. S. Rajasegar &\nMrs. R. Amuthalini",
     "theirSon": "their son",
     "theirDaughter": "their daughter",
-    "groomName": "Chi. Sayeethan",
-    "brideName": "Sow. Prasanciya",
+    "groomPrefix": "Chi.",
+    "groomName": "Sayeethan",
+    "bridePrefix": "Sow.",
+    "brideName": "Prasanciya",
     "date": "Date",
     "venue": "Venue",
     "muhurtham": "Muhurtham: 9:00 AM – 11:00 AM",
@@ -54,8 +56,10 @@
   "meetTheCouple": {
     "theBride": "The Bride",
     "theGroom": "The Groom",
-    "brideName": "Sow. Prasanciya",
-    "groomName": "Chi. Sayeethan",
+    "bridePrefix": "Sow.",
+    "brideName": "Prasanciya",
+    "groomPrefix": "Chi.",
+    "groomName": "Sayeethan",
     "brideQuote": "She is grace wrapped in laughter — a light that brightens every room she enters.",
     "groomQuote": "He is strength softened by kindness — a steady hand and a heart full of devotion.",
     "brideParents": "Daughter of Mr. S. Rajasegar & Mrs. R. Amuthalini",
@@ -99,8 +103,8 @@
     "attendance": "Attendance",
     "accepts": "Joyfully Accepts",
     "declines": "Regretfully Declines",
-    "dietary": "Dietary Restrictions",
-    "dietaryPlaceholder": "Any allergies or dietary needs (optional)",
+    "dietary": "A Kind Message",
+    "dietaryPlaceholder": "Share your wishes, blessings, or any notes (optional)",
     "submit": "Submit RSVP",
     "sending": "Sending…",
     "errorName": "Please enter your name.",
@@ -114,7 +118,8 @@
     "successFollowUp": "Your response has been received. We look forward to celebrating with you.",
     "emailSubject": "Wedding RSVP — {name}",
     "emailFromName": "Ciya Wedding RSVP",
-    "emailNone": "None"
+    "emailNone": "None",
+    "emailMessageLabel": "Message"
   },
   "envelope": {
     "swipeUp": "Swipe up",
@@ -131,7 +136,7 @@
     "weddingGloss": "Om — auspicious wedding",
     "upnishadPrimary": "நாம் ஒன்றாகக் காக்கப்படுவோம், ஒன்றாக வாழ்வோம், ஒன்றாக வலிமையுடன் வாழ்வோம்",
     "upnishadGloss": "May we move, nourish, and grow in strength together",
-    "biblePrimary": "எனவே, கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்",
+    "biblePrimary": "கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்",
     "bibleGloss": "Therefore what God has joined, let no one separate",
     "bibleCitationPrimary": "— மத்தேயு 19:6, திருவிவிலியம்",
     "bibleCitationGloss": "Matthew 19:6 — Tamil Catholic Bible"
@@ -153,5 +158,21 @@
     "en": "English",
     "fr": "French",
     "ta": "Tamil"
+  },
+  "honorifics": {
+    "title": "About the traditional names",
+    "intro": "Tap the prefix before a name, or Chi. / Sow. below, to learn what they mean.",
+    "openGroom": "Learn what Chi. means",
+    "openBride": "Learn what Sow. means",
+    "groomRole": "Groom",
+    "brideRole": "Bride",
+    "groom": {
+      "fullForm": "Chiranjeevi",
+      "meaning": "Chi. is short for Chiranjeevi (Sanskrit), a traditional blessing meaning \"may he live long.\" It is placed before the groom's name on South Indian wedding invitations. On this invitation, the Tamil form திருநிறைச்செல்வன் is also used — a title for the youngest son's wedding."
+    },
+    "bride": {
+      "fullForm": "Sowbhagyavathi",
+      "meaning": "Sow. is short for Sowbhagyavathi (Sanskrit), a blessing wishing the bride a fortunate and blessed married life. On this invitation, the Tamil form திருநிறைச்செல்வி is also used — a title for the youngest daughter's wedding."
+    }
   }
 }

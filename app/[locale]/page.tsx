@@ -13,6 +13,8 @@ import SaveTheDate from "@/components/sections/SaveTheDate";
 import Schedule from "@/components/sections/Schedule";
 import Venue from "@/components/sections/Venue";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import HonorificGlossary from "@/components/HonorificGlossary";
+import { HonorificProvider } from "@/components/HonorificContext";
 
 const EnvelopeOverlay = dynamic(
   () => import("@/components/EnvelopeOverlay"),
@@ -24,7 +26,7 @@ export default function Home() {
   const t = useTranslations("footer");
 
   return (
-    <>
+    <HonorificProvider>
       <main className="relative w-full">
         <div className="lg:flex lg:min-h-screen">
           <div className="relative h-dvh w-full lg:sticky lg:top-0 lg:h-screen lg:w-1/2 lg:shrink-0">
@@ -56,11 +58,12 @@ export default function Home() {
           </p>
           <p className="mt-3 text-sm text-stone-700">{t("groomFamily")}</p>
           <p className="text-sm text-stone-700">{t("brideFamily")}</p>
+          <HonorificGlossary />
           <LanguageSwitcher className="mt-8" />
         </footer>
       </main>
 
       <EnvelopeOverlay onOpen={() => setEnvelopeOpen(true)} />
-    </>
+    </HonorificProvider>
   );
 }

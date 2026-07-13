@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { EnvelopeHalfDecor, SealImage } from "@/components/EnvelopeTheme";
-import { playCrackSound, unlockAudio } from "@/lib/playCrackSound";
 
 type SealPhase = "intact" | "broken";
 type DragZone = "top" | "bottom";
@@ -69,6 +68,7 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
   const hasOpened = useRef(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const sealPhaseRef = useRef<SealPhase>("intact");
+  const crackRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     sealPhaseRef.current = sealPhase;
@@ -90,24 +90,41 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
     window.setTimeout(() => setIsHidden(true), 450);
   }, [onOpen]);
 
-  const breakSeal = useCallback(() => {
+  const breakSeal = () => {
     if (sealPhaseRef.current !== "intact") return;
     sealPhaseRef.current = "broken";
-    setSealPhase("broken");
-    void playCrackSound();
-  }, []);
 
-  const handleSealPointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    const sound = crackRef.current;
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+
+    setSealPhase("broken");
+  };
+
+  const handleSealTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    unlockAudio();
     breakSeal();
   };
 
-  const handlePointerDown = (e: React.PointerEvent) => {
-    unlockAudio();
+  const handleSealPointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (e.pointerType === "touch") return;
+    e.stopPropagation();
+    breakSeal();
+  };
 
+  const handleOverlayTouchStart = () => {
     if (sealPhaseRef.current === "intact") {
       breakSeal();
+    }
+  };
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (sealPhaseRef.current === "intact") {
+      if (e.pointerType !== "touch") {
+        breakSeal();
+      }
       return;
     }
     if (isFullyOpen) return;
@@ -207,11 +224,19 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
         opacity: isFullyOpen ? 0 : 1,
         transition: isFullyOpen ? "opacity 0.4s ease-out" : "none",
       }}
+      onTouchStart={handleOverlayTouchStart}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
+      <audio
+        ref={crackRef}
+        src="/assets/seal-crack.wav"
+        preload="auto"
+        playsInline
+        className="hidden"
+      />
       <div
         className="pointer-events-none absolute top-0 left-0 h-[calc(50dvh+6px)] w-full z-20"
         style={halfStyle("up")}
@@ -266,6 +291,7 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
       {sealPhase === "intact" && (
         <button
           type="button"
+          onTouchStart={handleSealTouchStart}
           onPointerDown={handleSealPointerDown}
           className="absolute top-1/2 left-1/2 z-40 min-h-48 min-w-48 -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation transition-transform hover:scale-105 active:scale-95"
           aria-label={t("breakSeal")}

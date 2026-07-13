@@ -27,8 +27,10 @@
     "brideParents": "M. S. Rajasegar &\nMme R. Amuthalini",
     "theirSon": "leur fils",
     "theirDaughter": "leur fille",
-    "groomName": "Chi. Sayeethan",
-    "brideName": "Sow. Prasanciya",
+    "groomPrefix": "Chi.",
+    "groomName": "Sayeethan",
+    "bridePrefix": "Sow.",
+    "brideName": "Prasanciya",
     "date": "Date",
     "venue": "Lieu",
     "muhurtham": "Muhurtham : 9h00 – 11h00",
@@ -54,8 +56,10 @@
   "meetTheCouple": {
     "theBride": "La Mariée",
     "theGroom": "Le Marié",
-    "brideName": "Sow. Prasanciya",
-    "groomName": "Chi. Sayeethan",
+    "bridePrefix": "Sow.",
+    "brideName": "Prasanciya",
+    "groomPrefix": "Chi.",
+    "groomName": "Sayeethan",
     "brideQuote": "Elle est la grâce enveloppée de rire — une lumière qui illumine chaque pièce qu'elle traverse.",
     "groomQuote": "Il est la force adoucie par la bonté — une main ferme et un cœur plein de dévotion.",
     "brideParents": "Fille de M. S. Rajasegar & Mme R. Amuthalini",
@@ -99,8 +103,8 @@
     "attendance": "Présence",
     "accepts": "Accepte avec Joie",
     "declines": "Décline avec Regret",
-    "dietary": "Restrictions Alimentaires",
-    "dietaryPlaceholder": "Allergies ou besoins alimentaires (facultatif)",
+    "dietary": "Un mot pour nous",
+    "dietaryPlaceholder": "Partagez vos vœux, bénédictions ou notes (facultatif)",
     "submit": "Envoyer le RSVP",
     "sending": "Envoi en cours…",
     "errorName": "Veuillez entrer votre nom.",
@@ -131,7 +135,7 @@
     "weddingGloss": "Om — mariage auspicieux",
     "upnishadPrimary": "நாம் ஒன்றாகக் காக்கப்படுவோம், ஒன்றாக வாழ்வோம், ஒன்றாக வலிமையுடன் வாழ்வோம்",
     "upnishadGloss": "Puissions-nous avancer, nous nourrir et grandir en force ensemble",
-    "biblePrimary": "எனவே, கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்",
+    "biblePrimary": "கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்",
     "bibleGloss": "Ce que Dieu a uni, que l'homme ne le sépare pas",
     "bibleCitationPrimary": "— மத்தேயு 19:6, திருவிவிலியம்",
     "bibleCitationGloss": "Matthieu 19:6 — Bible Catholique Tamoule"
@@ -153,5 +157,21 @@
     "en": "Anglais",
     "fr": "Français",
     "ta": "Tamoul"
+  },
+  "honorifics": {
+    "title": "À propos des noms traditionnels",
+    "intro": "Appuyez sur le préfixe devant un nom, ou sur Chi. / Sow. ci-dessous, pour découvrir leur signification.",
+    "openGroom": "Découvrir la signification de Chi.",
+    "openBride": "Découvrir la signification de Sow.",
+    "groomRole": "Marié",
+    "brideRole": "Mariée",
+    "groom": {
+      "fullForm": "Chiranjeevi",
+      "meaning": "Chi. est l'abréviation de Chiranjeevi (sanskrit), une bénédiction signifiant « puisse-t-il vivre longtemps ». Elle précède traditionnellement le nom du marié sur les faire-part du sud de l'Inde. Sur cette invitation, la forme tamoule திருநிறைச்செல்வன் est également utilisée — un titre pour le mariage du plus jeune fils."
+    },
+    "bride": {
+      "fullForm": "Sowbhagyavathi",
+      "meaning": "Sow. est l'abréviation de Sowbhagyavathi (sanskrit), une bénédiction souhaitant à la mariée une vie conjugale fortunée et bénie. Sur cette invitation, la forme tamoule திருநிறைச்செல்வி est également utilisée — un titre pour le mariage de la plus jeune fille."
+    }
   }
 }

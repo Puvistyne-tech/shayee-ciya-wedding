@@ -15,7 +15,7 @@ import {
   VENUE_ADDRESS_LINE2,
   VENUE_NAME,
 } from "@/lib/venue";
-import { getCoupleNameClass } from "@/lib/coupleNameStyles";
+import { CoupleName } from "@/components/CoupleName";
 
 export default function InvitationHeader({
   className = "",
@@ -62,9 +62,13 @@ export default function InvitationHeader({
             {t("groomParents")}
           </p>
           <p className="mt-1 text-xs text-stone-500 italic">{t("theirSon")}</p>
-          <p className={`${getCoupleNameClass(locale, "invitation")} break-words`}>
-            {t("groomName")}
-          </p>
+          <CoupleName
+            locale={locale}
+            prefix={t("groomPrefix")}
+            name={t("groomName")}
+            honorific="groom"
+            variant="invitation"
+          />
         </div>
 
         <div className="flex flex-col items-center pt-6 shrink-0">
@@ -89,9 +93,13 @@ export default function InvitationHeader({
           <p className="mt-1 text-xs text-stone-500 italic">
             {t("theirDaughter")}
           </p>
-          <p className={`${getCoupleNameClass(locale, "invitation")} break-words`}>
-            {t("brideName")}
-          </p>
+          <CoupleName
+            locale={locale}
+            prefix={t("bridePrefix")}
+            name={t("brideName")}
+            honorific="bride"
+            variant="invitation"
+          />
         </div>
       </div>
 

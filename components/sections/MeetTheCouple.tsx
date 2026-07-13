@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useFlexiblePhotoSrc } from "@/components/FlexiblePhoto";
 import { PHOTO_PATHS } from "@/lib/photos";
-import { getCoupleNameClass } from "@/lib/coupleNameStyles";
+import { CoupleName } from "@/components/CoupleName";
 
 function PortraitPhoto({
   src,
@@ -64,9 +64,14 @@ function BrideSpotlight() {
       <p className="text-center text-xs tracking-[0.3em] text-[#8b7355] uppercase">
         {t("theBride")}
       </p>
-      <h2 className={getCoupleNameClass(locale, "spotlight")}>
-        {t("brideName")}
-      </h2>
+      <CoupleName
+        as="h2"
+        locale={locale}
+        prefix={t("bridePrefix")}
+        name={t("brideName")}
+        honorific="bride"
+        variant="spotlight"
+      />
       <SectionDivider />
 
       <div className="mx-auto mt-8 max-w-xs sm:max-w-sm">
@@ -97,9 +102,14 @@ function GroomSpotlight() {
       <p className="text-center text-xs tracking-[0.3em] text-[#8b7355] uppercase">
         {t("theGroom")}
       </p>
-      <h2 className={getCoupleNameClass(locale, "spotlight")}>
-        {t("groomName")}
-      </h2>
+      <CoupleName
+        as="h2"
+        locale={locale}
+        prefix={t("groomPrefix")}
+        name={t("groomName")}
+        honorific="groom"
+        variant="spotlight"
+      />
       <SectionDivider />
 
       <div className="mx-auto mt-8 max-w-xs sm:max-w-sm">
