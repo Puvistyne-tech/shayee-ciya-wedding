@@ -1,41 +1,55 @@
-const events = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-        <rect x="3" y="4" width="18" height="18" rx="2" />
-        <path d="M16 2v4M8 2v4M3 10h18" />
-      </svg>
-    ),
-    label: "Date",
-    value: "06 September 2026, Sunday",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
-    label: "Muhurtham",
-    value: "Morning 9:00 AM – 11:00 AM",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-        <circle cx="9" cy="9" r="5" />
-        <circle cx="15" cy="15" r="5" />
-      </svg>
-    ),
-    label: "Reception",
-    value: "Evening 4:00 PM",
-  },
-];
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
+import { formatFullDate } from "@/lib/dates";
+
+const dateIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+    <rect x="3" y="4" width="18" height="18" rx="2" />
+    <path d="M16 2v4M8 2v4M3 10h18" />
+  </svg>
+);
+
+const timeIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 6v6l4 2" />
+  </svg>
+);
+
+const receptionIcon = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+    <circle cx="9" cy="9" r="5" />
+    <circle cx="15" cy="15" r="5" />
+  </svg>
+);
 
 export default function Schedule() {
+  const t = useTranslations("schedule");
+  const locale = useLocale();
+
+  const events = [
+    {
+      icon: dateIcon,
+      label: t("dateLabel"),
+      value: formatFullDate(locale),
+    },
+    {
+      icon: timeIcon,
+      label: t("muhurthamLabel"),
+      value: t("muhurthamValue"),
+    },
+    {
+      icon: receptionIcon,
+      label: t("receptionLabel"),
+      value: t("receptionValue"),
+    },
+  ];
+
   return (
     <section className="bg-cream px-6 py-14">
       <h2 className="text-center font-serif text-2xl font-medium tracking-wide">
-        Schedule of Events
+        {t("heading")}
       </h2>
       <div className="mx-auto mt-2 h-px w-16 bg-stone-300" />
 

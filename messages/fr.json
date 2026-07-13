@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "title": "Sayeethan & Prasanciya — Invitation de Mariage",
+    "description": "Rejoignez-nous pour célébrer notre mariage le 6 septembre 2026 au Palais du Grand Paris, Champigny-sur-Marne."
+  },
+  "common": {
+    "scroll": "Défiler",
+    "scrollToInvitation": "Aller à l'invitation",
+    "mute": "Couper le son",
+    "unmute": "Activer le son",
+    "photoComingSoon": "Photo bientôt disponible",
+    "photoUnavailable": "Photo indisponible",
+    "close": "Fermer",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "previousPhoto": "Photo précédente",
+    "nextPhoto": "Photo suivante"
+  },
+  "invitation": {
+    "blessing1": "Srimathe Ramanujaya Namaha",
+    "blessing2": "|| Sri Vigneshwaraya Namaha ||",
+    "heading": "Invitation de Mariage",
+    "body": "Avec les bénédictions du Tout-Puissant et de nos aînés, nous vous invitons cordialement, vous et votre famille, à assister à la cérémonie de mariage et à bénir les jeunes mariés.",
+    "groom": "Marié",
+    "bride": "Mariée",
+    "groomParents": "M. K. Ravi &\nMme R. Kalamathi",
+    "brideParents": "M. S. Rajasegar &\nMme R. Amuthalini",
+    "theirSon": "leur fils",
+    "theirDaughter": "leur fille",
+    "groomName": "Chi. Sayeethan",
+    "brideName": "Sow. Prasanciya",
+    "date": "Date",
+    "venue": "Lieu",
+    "muhurtham": "Muhurtham : 9h00 – 11h00",
+    "reception": "Réception : 16h00",
+    "viewOnMaps": "Voir sur Google Maps"
+  },
+  "countdown": {
+    "tagline": "Compte à Rebours Vers Notre Union Sacrée",
+    "quote": "« Voici le jour que le Seigneur a fait » — Psaume 118:24",
+    "today": "C'est le grand jour !",
+    "days": "Jours",
+    "hours": "Heures",
+    "mins": "Min",
+    "secs": "Sec",
+    "blessing": "|| Shubha Muhurtham ||"
+  },
+  "weInviteYou": {
+    "eyebrow": "Avec Nos Familles",
+    "heading": "Nous Vous Invitons Avec Joie",
+    "body": "À nous rejoindre pour célébrer le début de notre avenir — une union bénie par la tradition, la foi et l'amour de tous ceux qui nous sont chers.",
+    "closing": "Votre présence nous honorerait plus que tout cadeau."
+  },
+  "meetTheCouple": {
+    "theBride": "La Mariée",
+    "theGroom": "Le Marié",
+    "brideName": "Sow. Prasanciya",
+    "groomName": "Chi. Sayeethan",
+    "brideQuote": "Elle est la grâce enveloppée de rire — une lumière qui illumine chaque pièce qu'elle traverse.",
+    "groomQuote": "Il est la force adoucie par la bonté — une main ferme et un cœur plein de dévotion.",
+    "brideParents": "Fille de M. S. Rajasegar & Mme R. Amuthalini",
+    "groomParents": "Fils de M. K. Ravi & Mme R. Kalamathi"
+  },
+  "gallery": {
+    "heading": "Deux Cœurs, Un Amour",
+    "subtitle": "Un aperçu de notre parcours ensemble",
+    "photoAlt": "Photo du couple {n}",
+    "enlargedAlt": "Photo agrandie du couple",
+    "viewerLabel": "Visionneuse de la galerie photo"
+  },
+  "schedule": {
+    "heading": "Programme des Événements",
+    "dateLabel": "Date",
+    "muhurthamLabel": "Muhurtham",
+    "muhurthamValue": "Matin 9h00 – 11h00",
+    "receptionLabel": "Réception",
+    "receptionValue": "Soir 16h00"
+  },
+  "venue": {
+    "heading": "Lieu & Itinéraire",
+    "dressCode": "Tenue : Traditionnelle / Formelle",
+    "openInMaps": "Ouvrir dans Google Maps"
+  },
+  "saveTheDate": {
+    "eyebrow": "Réservez la Date",
+    "heading": "Save the Date",
+    "times": "Muhurtham 9h00 · Réception 16h00",
+    "addToCalendar": "Ajouter au Calendrier",
+    "helper": "Ouvre le calendrier sur mobile · Télécharge sur ordinateur",
+    "googleCalendar": "Google Calendar",
+    "outlook": "Outlook",
+    "downloadIcs": "Télécharger .ics"
+  },
+  "rsvp": {
+    "heading": "RSVP",
+    "deadline": "Merci de répondre avant le {date}",
+    "fullName": "Nom Complet",
+    "namePlaceholder": "Votre nom",
+    "attendance": "Présence",
+    "accepts": "Accepte avec Joie",
+    "declines": "Décline avec Regret",
+    "dietary": "Restrictions Alimentaires",
+    "dietaryPlaceholder": "Allergies ou besoins alimentaires (facultatif)",
+    "submit": "Envoyer le RSVP",
+    "sending": "Envoi en cours…",
+    "errorName": "Veuillez entrer votre nom.",
+    "errorAttendance": "Veuillez sélectionner votre présence.",
+    "errorNotConfigured": "Le RSVP n'est pas encore configuré. Veuillez réessayer plus tard.",
+    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+    "errorConnection": "Impossible d'envoyer votre RSVP. Vérifiez votre connexion et réessayez.",
+    "thankYou": "Merci",
+    "successAccept": "Nous sommes ravis que vous nous rejoigniez !",
+    "successDecline": "Nous comprenons et vous regretterons ce jour si spécial.",
+    "successFollowUp": "Votre réponse a bien été reçue. Nous avons hâte de célébrer avec vous.",
+    "emailSubject": "Wedding RSVP — {name}",
+    "emailFromName": "Ciya Wedding RSVP",
+    "emailNone": "None"
+  },
+  "envelope": {
+    "swipeUp": "Glisser vers le haut",
+    "swipeDown": "Glisser vers le bas",
+    "breakSeal": "Briser le sceau de cire",
+    "waxSealAlt": "Sceau de cire",
+    "groomLabel": "Le Marié",
+    "brideLabel": "La Mariée",
+    "groomName": "Sayeethan",
+    "brideName": "Prasanciya",
+    "ganeshaPrimary": "|| ஸ்ரீ விக்நேஸ்வராய நம ||",
+    "ganeshaGloss": "Salutations à Seigneur Ganesha",
+    "weddingPrimary": "ஓம் சுப விவாஹம்",
+    "weddingGloss": "Om — mariage auspicieux",
+    "upnishadPrimary": "நாம் ஒன்றாகக் காக்கப்படுவோம், ஒன்றாக வாழ்வோம், ஒன்றாக வலிமையுடன் வாழ்வோம்",
+    "upnishadGloss": "Puissions-nous avancer, nous nourrir et grandir en force ensemble",
+    "biblePrimary": "எனவே, கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்",
+    "bibleGloss": "Ce que Dieu a uni, que l'homme ne le sépare pas",
+    "bibleCitationPrimary": "— மத்தேயு 19:6, திருவிவிலியம்",
+    "bibleCitationGloss": "Matthieu 19:6 — Bible Catholique Tamoule"
+  },
+  "footer": {
+    "cordially": "Nous Vous Invitons Cordialement,",
+    "groomFamily": "K. Ravi – R. Kalamathi",
+    "brideFamily": "S. Rajasegar – R. Amuthalini"
+  },
+  "calendar": {
+    "title": "Sayeethan & Prasanciya — Mariage",
+    "description": "Rejoignez-nous pour célébrer notre mariage. Muhurtham : 9h00 – 11h00. Réception : 16h00.",
+    "ceremonySummary": "Cérémonie de Mariage — Sayeethan & Prasanciya",
+    "receptionSummary": "Réception de Mariage — Sayeethan & Prasanciya",
+    "filename": "sayeethan-prasanciya-wedding.ics"
+  },
+  "languageSwitcher": {
+    "label": "Langue",
+    "en": "Anglais",
+    "fr": "Français",
+    "ta": "Tamoul"
+  }
+}

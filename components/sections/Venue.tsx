@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import {
   GOOGLE_MAPS_URL,
   VENUE_ADDRESS_LINE1,
@@ -6,10 +9,12 @@ import {
 } from "@/lib/venue";
 
 export default function Venue() {
+  const t = useTranslations("venue");
+
   return (
     <section className="px-6 py-14">
       <h2 className="text-center font-serif text-2xl font-medium tracking-wide">
-        Venue & Directions
+        {t("heading")}
       </h2>
       <div className="mx-auto mt-2 h-px w-16 bg-stone-300" />
 
@@ -29,7 +34,7 @@ export default function Venue() {
         </p>
 
         <p className="mt-6 text-sm text-stone-500 italic">
-          Dress code: Traditional / Formal attire
+          {t("dressCode")}
         </p>
 
         <a
@@ -42,7 +47,7 @@ export default function Venue() {
             <path d="M12 21s-7-4.5-7-11a7 7 0 1114 0c0 6.5-7 11-7 11z" />
             <circle cx="12" cy="10" r="2.5" />
           </svg>
-          Open in Google Maps
+          {t("openInMaps")}
         </a>
       </div>
     </section>

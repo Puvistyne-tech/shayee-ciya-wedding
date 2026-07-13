@@ -1,10 +1,15 @@
 import { VENUE_ADDRESS, VENUE_NAME } from "@/lib/venue";
+import type { Locale } from "@/i18n/routing";
 
-const WEDDING = {
-  title: "Sayeethan & Prasanciya — Wedding",
-  location: `${VENUE_NAME}, ${VENUE_ADDRESS}`,
-  description:
-    "Join us as we celebrate our wedding. Muhurtham: 9:00 AM – 11:00 AM. Reception: 4:00 PM.",
+export interface CalendarStrings {
+  title: string;
+  description: string;
+  ceremonySummary: string;
+  receptionSummary: string;
+  filename: string;
+}
+
+const TIMES = {
   ceremonyStart: "20260906T070000Z",
   ceremonyEnd: "20260906T090000Z",
   receptionStart: "20260906T140000Z",
@@ -21,7 +26,14 @@ function escapeICS(text: string) {
     .replace(/\n/g, "\\n");
 }
 
-function buildEvent(uid: string, summary: string, start: string, end: string) {
+function buildEvent(
+  uid: string,
+  summary: string,
+  start: string,
+  end: string,
+  strings: CalendarStrings
+) {
+  const location = `${VENUE_NAME}, ${VENUE_ADDRESS}`;
   const stamp = new Date()
     .toISOString()
     .replace(/[-:]/g, "")
@@ -34,13 +46,13 @@ function buildEvent(uid: string, summary: string, start: string, end: string) {
     `DTSTART:${start}`,
     `DTEND:${end}`,
     `SUMMARY:${escapeICS(summary)}`,
-    `DESCRIPTION:${escapeICS(WEDDING.description)}`,
-    `LOCATION:${escapeICS(WEDDING.location)}`,
+    `DESCRIPTION:${escapeICS(strings.description)}`,
+    `LOCATION:${escapeICS(location)}`,
     "END:VEVENT",
   ].join("\r\n");
 }
 
-export function generateICS() {
+export function generateICS(strings: CalendarStrings) {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -49,68 +61,84 @@ export function generateICS() {
     "METHOD:PUBLISH",
     buildEvent(
       "wedding-ceremony@sayeethan-prasanciya",
-      "Wedding Ceremony — Sayeethan & Prasanciya",
-      WEDDING.ceremonyStart,
-      WEDDING.ceremonyEnd
+      strings.ceremonySummary,
+      TIMES.ceremonyStart,
+      TIMES.ceremonyEnd,
+      strings
     ),
     buildEvent(
       "wedding-reception@sayeethan-prasanciya",
-      "Wedding Reception — Sayeethan & Prasanciya",
-      WEDDING.receptionStart,
-      WEDDING.receptionEnd
+      strings.receptionSummary,
+      TIMES.receptionStart,
+      TIMES.receptionEnd,
+      strings
     ),
     "END:VCALENDAR",
   ].join("\r\n");
 }
 
-function googleCalendarUrl(title: string, dates: string) {
+function googleCalendarUrl(
+  title: string,
+  dates: string,
+  strings: CalendarStrings
+) {
+  const location = `${VENUE_NAME}, ${VENUE_ADDRESS}`;
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: title,
     dates,
-    details: WEDDING.description,
-    location: WEDDING.location,
+    details: strings.description,
+    location,
   });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
-export function getGoogleCeremonyUrl() {
+export function getGoogleCeremonyUrl(strings: CalendarStrings) {
   return googleCalendarUrl(
-    "Wedding Ceremony — Sayeethan & Prasanciya",
-    WEDDING.googleCeremonyDates
+    strings.ceremonySummary,
+    TIMES.googleCeremonyDates,
+    strings
   );
 }
 
-export function getGoogleReceptionUrl() {
+export function getGoogleReceptionUrl(strings: CalendarStrings) {
   return googleCalendarUrl(
-    "Wedding Reception — Sayeethan & Prasanciya",
-    WEDDING.googleReceptionDates
+    strings.receptionSummary,
+    TIMES.googleReceptionDates,
+    strings
   );
 }
 
-export function getOutlookUrl() {
+export function getOutlookUrl(strings: CalendarStrings) {
+  const location = `${VENUE_NAME}, ${VENUE_ADDRESS}`;
   const params = new URLSearchParams({
-    subject: WEDDING.title,
+    subject: strings.title,
     startdt: "2026-09-06T09:00:00",
     enddt: "2026-09-06T18:00:00",
-    body: WEDDING.description,
-    location: WEDDING.location,
+    body: strings.description,
+    location,
   });
   return `https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`;
 }
 
-export function downloadICS() {
-  const blob = new Blob([generateICS()], {
+export function downloadICS(strings: CalendarStrings) {
+  const blob = new Blob([generateICS(strings)], {
     type: "text/calendar;charset=utf-8",
   });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "sayeethan-prasanciya-wedding.ics";
+  link.download = strings.filename;
   document.body.appendChild(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
 }
 
-export { WEDDING };
+export function getCalendarApiUrl(locale: Locale) {
+  return `/api/calendar?locale=${locale}`;
+}
+
+export function getWeddingLocation() {
+  return `${VENUE_NAME}, ${VENUE_ADDRESS}`;
+}

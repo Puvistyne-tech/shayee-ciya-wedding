@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const WEDDING_DATE = new Date("2026-09-06T09:00:00+02:00");
 
@@ -42,6 +43,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 }
 
 export default function WeddingCountdown() {
+  const t = useTranslations("countdown");
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
@@ -76,27 +78,27 @@ export default function WeddingCountdown() {
       </div>
 
       <p className="mt-3 text-center text-xs tracking-[0.2em] text-[#8b7355] uppercase">
-        Counting Down To Our Sacred Union
+        {t("tagline")}
       </p>
       <p className="mt-1 text-center font-serif text-sm italic text-[#6b1a30]/70">
-        &ldquo;This is the day the Lord has made&rdquo; — Psalm 118:24
+        {t("quote")}
       </p>
 
       {isToday ? (
         <p className="countdown-celebrate mt-6 text-center font-script text-4xl text-[#6b1a30]">
-          Today is the day!
+          {t("today")}
         </p>
       ) : (
         <div className="mt-6 flex gap-2 sm:gap-3">
-          <CountdownUnit value={timeLeft.days} label="Days" />
-          <CountdownUnit value={timeLeft.hours} label="Hours" />
-          <CountdownUnit value={timeLeft.minutes} label="Mins" />
-          <CountdownUnit value={timeLeft.seconds} label="Secs" />
+          <CountdownUnit value={timeLeft.days} label={t("days")} />
+          <CountdownUnit value={timeLeft.hours} label={t("hours")} />
+          <CountdownUnit value={timeLeft.minutes} label={t("mins")} />
+          <CountdownUnit value={timeLeft.seconds} label={t("secs")} />
         </div>
       )}
 
       <p className="mt-5 text-center text-[10px] tracking-widest text-stone-500">
-        || Shubha Muhurtham ||
+        {t("blessing")}
       </p>
     </div>
   );

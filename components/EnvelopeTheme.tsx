@@ -1,3 +1,7 @@
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
+
 export function HinduSymbols() {
   return (
     <div className="flex items-center justify-center gap-3 text-[#d4af37]">
@@ -142,7 +146,27 @@ interface EnvelopeHalfProps {
   variant: "top" | "bottom";
 }
 
+function GlossLine({ children }: { children: string }) {
+  if (!children) return null;
+  return (
+    <p className="text-[7px] tracking-wide text-[#f5d78e]/45">{children}</p>
+  );
+}
+
+function BottomGlossLine({ children }: { children: string }) {
+  if (!children) return null;
+  return (
+    <p className="mx-auto mt-1 max-w-[260px] text-[7px] leading-relaxed text-[#8b7355]/45">
+      {children}
+    </p>
+  );
+}
+
 export function EnvelopeHalfDecor({ variant }: EnvelopeHalfProps) {
+  const t = useTranslations("envelope");
+  const locale = useLocale();
+  const showGloss = locale !== "ta";
+
   if (variant === "top") {
     return (
       <>
@@ -169,18 +193,10 @@ export function EnvelopeHalfDecor({ variant }: EnvelopeHalfProps) {
 
         {/* Top blessing */}
         <div className="absolute top-8 right-0 left-0 text-center">
-          <p className="font-serif text-[10px] leading-relaxed text-[#f5d78e]/90">
-            ஸ்ரீமதேராமாநுஜாயநம:
-          </p>
-          <p className="text-[7px] tracking-wide text-[#f5d78e]/45">
-            Salutations to Sri Ramanuja
-          </p>
           <p className="mt-1 font-serif text-[10px] leading-relaxed text-[#f5d78e]/80">
-            || ஸ்ரீ விக்நேஸ்வராய நம ||
+            {t("ganeshaPrimary")}
           </p>
-          <p className="text-[7px] tracking-wide text-[#f5d78e]/45">
-            Salutations to Lord Ganesha
-          </p>
+          {showGloss && <GlossLine>{t("ganeshaGloss")}</GlossLine>}
           <div className="mt-3 flex justify-center">
             <HinduSymbols />
           </div>
@@ -193,35 +209,27 @@ export function EnvelopeHalfDecor({ variant }: EnvelopeHalfProps) {
         {/* Groom name — centered on upper flap */}
         <div className="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 px-6 text-center">
           <p className="text-[9px] tracking-[0.3em] text-[#f5d78e]/70 uppercase">
-            The Groom
+            {t("groomLabel")}
           </p>
           <p className="mt-1 font-script text-4xl text-[#ffd89b] drop-shadow-sm">
-            Sayeethan
+            {t("groomName")}
           </p>
           <p className="mt-2 font-serif text-[11px] leading-relaxed text-[#ffd89b]/90">
-            ஓம் சுப விவாஹம்
+            {t("weddingPrimary")}
           </p>
-          <p className="text-[7px] tracking-wide text-[#f5d78e]/45">
-            Om — auspicious wedding
-          </p>
+          {showGloss && (
+            <p className="text-[7px] tracking-wide text-[#f5d78e]/45">
+              {t("weddingGloss")}
+            </p>
+          )}
           <p className="mx-auto mt-2.5 max-w-[240px] font-serif text-[10px] leading-relaxed text-[#f5d78e]/80">
-            &ldquo;ஸஹ நாவவது, ஸஹ நௌ புனக்து, ஸஹ வீர்யம் கரவாவஹை&rdquo;
+            &ldquo;{t("upnishadPrimary")}&rdquo;
           </p>
-          <p className="mx-auto mt-1 max-w-[240px] text-[7px] leading-relaxed text-[#f5d78e]/45">
-            May we move, nourish, and grow in strength together
-          </p>
-          <p className="mt-1 text-[7px] tracking-wide text-[#f5d78e]/40">
-            — தைத்திரீய உபநிஷத்
-          </p>
-          <p className="text-[7px] tracking-wide text-[#f5d78e]/40">
-            Taittiriya Upanishad
-          </p>
-          <p className="mt-1.5 font-serif text-[9px] text-[#f5d78e]/65">
-            || மங்கள விவாஹ ||
-          </p>
-          <p className="text-[7px] tracking-wide text-[#f5d78e]/40">
-            Sacred matrimony
-          </p>
+          {showGloss && (
+            <p className="mx-auto mt-1 max-w-[240px] text-[7px] leading-relaxed text-[#f5d78e]/45">
+              {t("upnishadGloss")}
+            </p>
+          )}
         </div>
 
         {/* Marigold garland along bottom edge */}
@@ -261,23 +269,23 @@ export function EnvelopeHalfDecor({ variant }: EnvelopeHalfProps) {
       {/* Bride name & Bible verse */}
       <div className="absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2 px-8 text-center">
         <p className="text-[9px] tracking-[0.3em] text-[#8b7355]/70 uppercase">
-          The Bride
+          {t("brideLabel")}
         </p>
         <p className="mt-1 font-script text-4xl text-[#6b1a30]/80">
-          Prasanciya
+          {t("brideName")}
         </p>
         <p className="mx-auto mt-4 max-w-[260px] font-serif text-[10px] leading-relaxed text-[#6b1a30]/75">
-          &ldquo;எனவே, கடவுள் இணைத்ததை மனிதர் பிரிக்காதிருக்கட்டும்&rdquo;
+          &ldquo;{t("biblePrimary")}&rdquo;
         </p>
-        <p className="mx-auto mt-1 max-w-[260px] text-[7px] leading-relaxed text-[#8b7355]/45">
-          Therefore what God has joined, let no one separate
-        </p>
+        {showGloss && <BottomGlossLine>{t("bibleGloss")}</BottomGlossLine>}
         <p className="mt-1 text-[7px] tracking-wide text-[#8b7355]/40">
-          — மத்தேயு 19:6, திருவிவிலியம்
+          {t("bibleCitationPrimary")}
         </p>
-        <p className="text-[7px] tracking-wide text-[#8b7355]/40">
-          Matthew 19:6 — Tamil Catholic Bible
-        </p>
+        {showGloss && (
+          <p className="text-[7px] tracking-wide text-[#8b7355]/40">
+            {t("bibleCitationGloss")}
+          </p>
+        )}
       </div>
 
       {/* Vine borders */}

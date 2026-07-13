@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import VideoControls from "@/components/VideoControls";
 
 interface VideoHeroProps {
@@ -8,6 +9,7 @@ interface VideoHeroProps {
 }
 
 export default function VideoHero({ shouldPlay }: VideoHeroProps) {
+  const t = useTranslations("common");
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const scrollPausedRef = useRef(false);
@@ -87,7 +89,7 @@ export default function VideoHero({ shouldPlay }: VideoHeroProps) {
 
   const scrollToContent = () => {
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    const targetId = isDesktop ? "our-story" : "invitation-start";
+    const targetId = isDesktop ? "meet-the-couple" : "invitation-start";
     document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -117,10 +119,10 @@ export default function VideoHero({ shouldPlay }: VideoHeroProps) {
           type="button"
           onClick={scrollToContent}
           className="group flex flex-col items-center gap-1 transition-opacity hover:opacity-80"
-          aria-label="Scroll to invitation"
+          aria-label={t("scrollToInvitation")}
         >
           <span className="text-[10px] tracking-[0.25em] text-white/80 uppercase">
-            Scroll
+            {t("scroll")}
           </span>
           <div className="animate-bounce-gentle text-white/90 group-hover:text-white">
             <svg

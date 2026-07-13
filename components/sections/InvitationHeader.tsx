@@ -1,47 +1,56 @@
+"use client";
+
+import { useTranslations, useLocale } from "next-intl";
 import CouplePhoto from "@/components/CouplePhoto";
 import WeddingCountdown from "@/components/sections/WeddingCountdown";
 import WeInviteYou from "@/components/sections/WeInviteYou";
 import { PHOTO_PATHS } from "@/lib/photos";
+import {
+  formatWeddingDate,
+  formatWeekday,
+} from "@/lib/dates";
 import {
   GOOGLE_MAPS_URL,
   VENUE_ADDRESS_LINE1,
   VENUE_ADDRESS_LINE2,
   VENUE_NAME,
 } from "@/lib/venue";
+import { getCoupleNameClass } from "@/lib/coupleNameStyles";
 
 export default function InvitationHeader({
   className = "",
 }: {
   className?: string;
 }) {
+  const t = useTranslations("invitation");
+  const locale = useLocale();
+
   return (
     <section
       id="invitation-start"
       className={`border-y border-stone-300 bg-cream px-6 py-12 text-center lg:border-y-0 lg:border-l lg:py-16 ${className}`}
     >
       <p className="text-xs tracking-widest text-stone-600 uppercase">
-        Srimathe Ramanujaya Namaha
+        {t("blessing1")}
       </p>
       <p className="mt-1 text-xs tracking-widest text-stone-600">
-        || Sri Vigneshwaraya Namaha ||
+        {t("blessing2")}
       </p>
 
       <h2 className="mt-8 font-serif text-2xl font-medium tracking-wide">
-        Wedding Invitation
+        {t("heading")}
       </h2>
 
       <p className="mx-auto mt-4 max-w-sm text-base leading-relaxed text-stone-700 italic">
-        With the blessings of the Almighty and our elders, we cordially invite
-        you with your family to attend the auspicious wedding ceremony and to
-        bless the newlyweds.
+        {t("body")}
       </p>
 
       <WeddingCountdown />
 
-      <div className="mt-10 flex items-start justify-center gap-4">
-        <div className="flex-1 text-center">
+      <div className="mx-auto mt-10 grid max-w-lg grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-3 sm:gap-4">
+        <div className="min-w-0 text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-stone-500 uppercase">
-            Groom
+            {t("groom")}
           </p>
           <CouplePhoto
             src={PHOTO_PATHS.groom}
@@ -49,25 +58,24 @@ export default function InvitationHeader({
             fallback="S"
             className="mx-auto mt-3 h-24 w-24"
           />
-          <p className="mt-3 text-sm leading-relaxed text-stone-600">
-            Mr. K. Ravi &<br />
-            Mrs. R. Kalamathi
+          <p className="mt-3 text-sm leading-relaxed text-stone-600 whitespace-pre-line">
+            {t("groomParents")}
           </p>
-          <p className="mt-1 text-xs text-stone-500 italic">their son</p>
-          <p className="mt-3 font-script text-4xl text-stone-800">
-            Chi. Sayeethan
+          <p className="mt-1 text-xs text-stone-500 italic">{t("theirSon")}</p>
+          <p className={`${getCoupleNameClass(locale, "invitation")} break-words`}>
+            {t("groomName")}
           </p>
         </div>
 
-        <div className="flex flex-col items-center pt-6">
+        <div className="flex flex-col items-center pt-6 shrink-0">
           <div className="h-16 w-px bg-stone-300" />
           <div className="my-2 text-stone-400">&#10047;</div>
           <div className="h-16 w-px bg-stone-300" />
         </div>
 
-        <div className="flex-1 text-center">
+        <div className="min-w-0 text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-stone-500 uppercase">
-            Bride
+            {t("bride")}
           </p>
           <CouplePhoto
             src={PHOTO_PATHS.bride}
@@ -75,13 +83,14 @@ export default function InvitationHeader({
             fallback="P"
             className="mx-auto mt-3 h-24 w-24"
           />
-          <p className="mt-3 text-sm leading-relaxed text-stone-600">
-            Mr. S. Rajasegar &<br />
-            Mrs. R. Amuthalini
+          <p className="mt-3 text-sm leading-relaxed text-stone-600 whitespace-pre-line">
+            {t("brideParents")}
           </p>
-          <p className="mt-1 text-xs text-stone-500 italic">their daughter</p>
-          <p className="mt-3 font-script text-4xl text-stone-800">
-            Sow. Prasanciya
+          <p className="mt-1 text-xs text-stone-500 italic">
+            {t("theirDaughter")}
+          </p>
+          <p className={`${getCoupleNameClass(locale, "invitation")} break-words`}>
+            {t("brideName")}
           </p>
         </div>
       </div>
@@ -101,17 +110,17 @@ export default function InvitationHeader({
               <path d="M16 2v4M8 2v4M3 10h18" />
             </svg>
             <p className="text-xs font-semibold tracking-widest uppercase">
-              Date
+              {t("date")}
             </p>
           </div>
           <p className="mt-2 font-serif text-base font-medium text-stone-800">
-            06 September 2026
+            {formatWeddingDate(locale)}
           </p>
-          <p className="mt-1 text-sm text-stone-600">Sunday</p>
-          <p className="mt-2 text-xs text-stone-500">
-            Muhurtham: 9:00 AM – 11:00 AM
+          <p className="mt-1 text-sm text-stone-600">
+            {formatWeekday(locale)}
           </p>
-          <p className="text-xs text-stone-500">Reception: 4:00 PM</p>
+          <p className="mt-2 text-xs text-stone-500">{t("muhurtham")}</p>
+          <p className="text-xs text-stone-500">{t("reception")}</p>
         </div>
 
         <div className="rounded-lg border border-stone-200 bg-white px-4 py-5 text-left">
@@ -128,7 +137,7 @@ export default function InvitationHeader({
               <circle cx="12" cy="10" r="2.5" />
             </svg>
             <p className="text-xs font-semibold tracking-widest uppercase">
-              Venue
+              {t("venue")}
             </p>
           </div>
           <p className="mt-2 font-serif text-base font-medium text-stone-800">
@@ -145,7 +154,7 @@ export default function InvitationHeader({
             rel="noopener noreferrer"
             className="mt-3 inline-block text-xs font-medium tracking-wide text-[#8b7355] underline-offset-2 hover:underline"
           >
-            View on Google Maps
+            {t("viewOnMaps")}
           </a>
         </div>
       </div>

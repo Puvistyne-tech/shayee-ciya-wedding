@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 interface ScrollIndicatorProps {
   targetId: string;
   className?: string;
@@ -9,6 +11,8 @@ export default function ScrollIndicator({
   targetId,
   className = "",
 }: ScrollIndicatorProps) {
+  const t = useTranslations("common");
+
   const scrollToContent = () => {
     document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -18,10 +22,10 @@ export default function ScrollIndicator({
       type="button"
       onClick={scrollToContent}
       className={`group flex flex-col items-center gap-1 transition-opacity hover:opacity-80 ${className}`}
-      aria-label="Scroll to invitation"
+      aria-label={t("scrollToInvitation")}
     >
       <span className="text-[10px] tracking-[0.25em] text-stone-500 uppercase">
-        Scroll
+        {t("scroll")}
       </span>
       <div className="animate-bounce-gentle text-stone-600 group-hover:text-stone-800">
         <svg

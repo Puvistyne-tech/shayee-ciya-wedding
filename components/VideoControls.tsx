@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 interface VideoControlsProps {
   isMuted: boolean;
   onToggleMute: () => void;
@@ -7,11 +11,13 @@ export default function VideoControls({
   isMuted,
   onToggleMute,
 }: VideoControlsProps) {
+  const t = useTranslations("common");
+
   return (
     <button
       type="button"
       onClick={onToggleMute}
-      aria-label={isMuted ? "Unmute" : "Mute"}
+      aria-label={isMuted ? t("unmute") : t("mute")}
       className="absolute right-4 bottom-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/55 text-white/90 shadow-lg backdrop-blur-md transition-colors hover:bg-white/15 hover:text-white"
     >
       {isMuted ? (

@@ -1,19 +1,34 @@
+const PHOTOS_DIR = "/assets/photos";
+
+/** Primary path — tries .jpg first; FlexiblePhoto falls back to .jpeg automatically */
+export function photoPath(name: string): string {
+  return `${PHOTOS_DIR}/${name}.jpg`;
+}
+
+export function alternatePhotoSrc(src: string): string | null {
+  if (/\.jpe?g$/i.test(src)) {
+    return src.endsWith(".jpeg")
+      ? src.replace(/\.jpeg$/i, ".jpg")
+      : src.replace(/\.jpg$/i, ".jpeg");
+  }
+  return null;
+}
+
 export const PHOTO_PATHS = {
-  groom: "/assets/photos/groom.jpg",
-  bride: "/assets/photos/bride.jpg",
-  coupleHero: "/assets/photos/couple-hero.jpg",
+  /** Small round portraits in the invitation header */
+  groom: photoPath("groom"),
+  bride: photoPath("bride"),
+  coupleHero: photoPath("couple-hero"),
+
+  /** Background for the Two Hearts, One Love section heading */
+  momentsBackground: photoPath("couple-hero-2"),
+
   gallery: [
-    "/assets/photos/gallery-1.jpg",
-    "/assets/photos/gallery-2.jpg",
-    "/assets/photos/gallery-3.jpg",
-    "/assets/photos/gallery-4.jpg",
-    "/assets/photos/gallery-5.jpg",
-    "/assets/photos/gallery-6.jpg",
+    photoPath("gallery-1"),
+    photoPath("gallery-2"),
+    photoPath("gallery-3"),
+    photoPath("gallery-4"),
+    photoPath("gallery-5"),
+    photoPath("gallery-6"),
   ],
-  story: {
-    "2019": "/assets/photos/story-2019.jpg",
-    "2020": "/assets/photos/story-2020.jpg",
-    "2023": "/assets/photos/story-2023.jpg",
-    "2025": "/assets/photos/story-2025.jpg",
-  },
 } as const;

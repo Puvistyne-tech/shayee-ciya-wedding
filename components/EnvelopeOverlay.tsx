@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { EnvelopeHalfDecor, SealImage } from "@/components/EnvelopeTheme";
 import { playCrackSound, unlockAudio } from "@/lib/playCrackSound";
 
@@ -53,6 +54,7 @@ function SwipeHint({
 }
 
 export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
+  const t = useTranslations("envelope");
   const [sealPhase, setSealPhase] = useState<SealPhase>("intact");
   const [openProgress, setOpenProgress] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -90,12 +92,12 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
 
   const breakSeal = useCallback(() => {
     if (sealPhaseRef.current !== "intact") return;
-    unlockAudio();
-    playCrackSound();
+    sealPhaseRef.current = "broken";
     setSealPhase("broken");
+    void playCrackSound();
   }, []);
 
-  const handleSealButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSealPointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     unlockAudio();
     breakSeal();
@@ -233,12 +235,12 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
         <>
           <SwipeHint
             direction="up"
-            label="Swipe up"
+            label={t("swipeUp")}
             className="top-[calc(50dvh-6.5rem)] left-1/2 z-40 -translate-x-1/2"
           />
           <SwipeHint
             direction="down"
-            label="Swipe down"
+            label={t("swipeDown")}
             className="top-[calc(50dvh+5rem)] left-1/2 z-40 -translate-x-1/2 [&_p]:text-[#6b1a30]/90 [&_svg]:text-[#6b1a30]/80"
           />
         </>
@@ -264,14 +266,14 @@ export default function EnvelopeOverlay({ onOpen }: EnvelopeOverlayProps) {
       {sealPhase === "intact" && (
         <button
           type="button"
-          onClick={handleSealButtonClick}
+          onPointerDown={handleSealPointerDown}
           className="absolute top-1/2 left-1/2 z-40 min-h-48 min-w-48 -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation transition-transform hover:scale-105 active:scale-95"
-          aria-label="Break the wax seal"
+          aria-label={t("breakSeal")}
           tabIndex={0}
         >
           <SealImage
             src="/assets/wax-seal.png"
-            alt="Wax seal"
+            alt={t("waxSealAlt")}
             className="mx-auto w-44 rounded-full drop-shadow-lg"
           />
         </button>

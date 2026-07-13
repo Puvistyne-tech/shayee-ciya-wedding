@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FlexiblePhoto from "@/components/FlexiblePhoto";
 
 interface CouplePhotoProps {
   src: string;
@@ -29,11 +30,10 @@ export default function CouplePhoto({
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <FlexiblePhoto
       src={src}
       alt={alt}
-      onError={() => setHasError(true)}
+      onLoadFailed={() => setHasError(true)}
       className={`rounded-full object-cover ${className}`}
     />
   );

@@ -17,12 +17,21 @@
   --font-sans: var(--font-cormorant);
   --font-serif: var(--font-playfair);
   --font-script: var(--font-great-vibes);
+  --font-tamil: var(--font-tamil);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-tamil {
+  font-family: var(--font-tamil), var(--font-cormorant), Georgia, serif;
+}
+
+.font-tamil .font-script {
+  font-family: var(--font-tamil), var(--font-great-vibes), cursive;
 }
 
 @keyframes bounce-gentle {
