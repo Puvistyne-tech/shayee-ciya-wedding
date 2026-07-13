@@ -1,8 +1,8 @@
 /** Public path for link-preview image (Open Graph / WhatsApp / iMessage). */
-export const OG_IMAGE_PATH = "/assets/cover.png";
+export const OG_IMAGE_PATH = "/assets/cover-og.jpg";
 
-export const OG_IMAGE_WIDTH = 4640;
-export const OG_IMAGE_HEIGHT = 6960;
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
 
 export const DEFAULT_SITE_URL = "https://sayeeciya.netlify.app";
 
